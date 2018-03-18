@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Button } from 'antd';
-import './App.css';
 import { Layout, Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom';
+import './App.css';
 const { Header, Sider, Content } = Layout;
 const SubMenu = Menu.SubMenu;
 
-
 class App extends Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    auth: true
   };
+
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
   };
+
   render() {
+    if (!this.state.auth) {
+      return <Link to="/topics">Topics</Link>;
+    }
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
